@@ -1,2 +1,2 @@
 # infra
-infras repository for project
+infra repository for project
