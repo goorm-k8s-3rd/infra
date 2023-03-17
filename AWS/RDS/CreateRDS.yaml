@@ -4,13 +4,13 @@ Resources:
   PrivateSubnet1:
     Type: AWS::EC2::Subnet
     Properties:
-      VpcId: <VPC ID>
+      VpcId: 
       CidrBlock: <Private Subnet 1 CIDR>
  
   PrivateSubnet2:
     Type: AWS::EC2::Subnet
     Properties:
-      VpcId: <VPC ID>
+      VpcId:
       CidrBlock: <Private Subnet 2 CIDR>
 
   DBSubnetGroup:
