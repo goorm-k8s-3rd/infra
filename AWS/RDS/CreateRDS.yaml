@@ -1,15 +1,16 @@
 AWSTemplateFormatVersion: 2010-09-09
-Description: RDS for web
-
-Metadata: 
-
 Parameters: 
-
-Mappings: 
-
-Conditions: 
-
 Resources: 
+  subnet1:
+    Type: AWS::EC2::Subnet
+    Properties:
+      AvailabilityZone: zone-id
+      VpcId: vpc-id
+      CidrBlock: --.--.--.--/--
+      Tags:
+        - Key: keyname
+          Value: value
+
   rdsDBInstance:
     Type: AWS::RDS::DBInstance
     Properties:
