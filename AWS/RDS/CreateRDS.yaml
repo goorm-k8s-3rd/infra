@@ -1,53 +1,39 @@
 AWSTemplateFormatVersion: 2010-09-09
-Parameters: 
-Resources: 
-  subnet1:
+
+Resources:
+  PrivateSubnet1:
     Type: AWS::EC2::Subnet
     Properties:
-      AvailabilityZone: zone-id
-      VpcId: vpc-id
-      CidrBlock: --.--.--.--/--
-      Tags:
-        - Key: keyname
-          Value: value
+      VpcId: <VPC ID>
+      CidrBlock: <Private Subnet 1 CIDR>
+ 
+  PrivateSubnet2:
+    Type: AWS::EC2::Subnet
+    Properties:
+      VpcId: <VPC ID>
+      CidrBlock: <Private Subnet 2 CIDR>
 
-  rdsDBInstance:
+  DBSubnetGroup:
+    Type: AWS::RDS::DBSubnetGroup
+    Properties:
+      DBSubnetGroupDescription: subnet group for rds
+      DBSubnetGroupName: web-db-subnet-group
+      SubnetIds:
+        - !Ref PrivateSubnet1 #원래오류남
+        - !Ref PrivateSubnet2
+
+  DBInstance:
     Type: AWS::RDS::DBInstance
     Properties:
-      AllocatedStorage: 
-      DBInstanceClass: 
-      AllowMajorVersionUpgrade: true|false
-      AutoMinorVersionUpgrade: true|false
-      AvailabilityZone: 
-      BackupRetentionPeriod: 
-      CharacterSetName: 
-      DBInstanceIdentifier: 
-      DBName: 
-      DBParameterGroupName: 
-      DBSecurityGroups: 
-        - db-sg-group
-      DBSnapshotIdentifier: 
-      DBSubnetGroupName: 
-      Engine: mysql|oracle
-      EngineVersion: 
-      Iops: 
-      KmsKeyId: 
-      LicenseModel: 
-      MasterUsername: 
-      MasterUserPassword: 
-      MultiAZ: true|false
-      OptionGroupName: 
-      Port: 
-      PreferredBackupWindow: 
-      PreferredMaintenanceWindow: 
-      PubliclyAccessible: true|false
-      SourceDBInstanceIdentifier: 
-      StorageEncrypted: true|false
-      StorageType: 
+      DBName: web-db
+      DBInstanceIdentifier: web-db
+      AvailabilityZone: ap-northeast-2
+      AllocatedStorage: 1
+      DBInstanceClass: db.t3.medium
+      Engine: mysql
+      MasterUsername: root
+      MasterUserPassword: rootpassword1
       VPCSecurityGroups:
         - vpc-sg-id
-      Tags:
-        - Key: keyname
-          Value: value
-
-Outputs:
+      DBSubnetGroupName: web-db-subnet-group
+      MultiAZ: true
