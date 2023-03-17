@@ -4,7 +4,7 @@ kind: ClusterConfig
 metadata:
   name: book-network
   region: ap-northeast-2
-  version: "1.24" #쿠버네티스의 버전
+  version: "1.26" #쿠버네티스의 버전
 
 # AZ(가용 영역), 설정하지 않으면 3개의 가용 영역에서 랜덤으로 생성된다
 availabilityZones: ["ap-northeast-2a", "ap-northeast-2b",  "ap-northeast-2c"]

@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: web-db-config
+  labels:
+    app: web
+    app.kubernetes.io/name: web-db
+data:
+  primary.cnf: | #my.cnf 대체를 위한 설정 파일
+    [mysqld]
+    log-bin    
+  replica.cnf: |
+    [mysqld]
+    super-read-only    

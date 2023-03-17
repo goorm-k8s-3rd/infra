@@ -25,3 +25,8 @@ Prometheus & Grafana를 이용한 모니터링 설정
 
 web deployment
 ```
+
+```bash
+cd eks-cluster
+eksctl create cluster -f create_cluster.yaml
+```
