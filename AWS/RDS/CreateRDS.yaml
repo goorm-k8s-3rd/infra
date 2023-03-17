@@ -37,3 +37,4 @@ Resources:
         - vpc-sg-id
       DBSubnetGroupName: web-db-subnet-group
       MultiAZ: true
+      PubliclyAccessible: true
