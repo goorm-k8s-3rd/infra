@@ -30,3 +30,8 @@ web deployment
 cd eks-cluster
 eksctl create cluster -f create_cluster.yaml
 ```
+
+eks 클러스터에 접속하시려면 이렇게 하시면 됩니다.
+```bash
+aws eks update-kubeconfig --region ap-northeast-2 --name book-network
+```
