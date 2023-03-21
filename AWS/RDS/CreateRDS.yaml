@@ -4,14 +4,16 @@ Resources:
   PrivateSubnet1:
     Type: AWS::EC2::Subnet
     Properties:
-      VpcId: 
-      CidrBlock: <Private Subnet 1 CIDR>
+      VpcId: vpc-049fd765256442cd7
+      CidrBlock: 192.168.192.0/19
+      AvailabilityZone: ap-northeast-2a
  
   PrivateSubnet2:
     Type: AWS::EC2::Subnet
     Properties:
-      VpcId:
-      CidrBlock: <Private Subnet 2 CIDR>
+      VpcId: vpc-049fd765256442cd7
+      CidrBlock: 192.168.230.0/19
+      AvailabilityZone: ap-northeast-2b
 
   DBSubnetGroup:
     Type: AWS::RDS::DBSubnetGroup
@@ -19,22 +21,25 @@ Resources:
       DBSubnetGroupDescription: subnet group for rds
       DBSubnetGroupName: web-db-subnet-group
       SubnetIds:
-        - !Ref PrivateSubnet1 #원래오류남
+        - !Ref PrivateSubnet1
         - !Ref PrivateSubnet2
 
   DBInstance:
     Type: AWS::RDS::DBInstance
+    DependsOn: DBSubnetGroup
     Properties:
-      DBName: web-db
+      DBName: webDB
       DBInstanceIdentifier: web-db
-      AvailabilityZone: ap-northeast-2
-      AllocatedStorage: 1
+      AllocatedStorage: 20
       DBInstanceClass: db.t3.medium
       Engine: mysql
       MasterUsername: root
       MasterUserPassword: rootpassword1
       VPCSecurityGroups:
-        - vpc-sg-id
-      DBSubnetGroupName: web-db-subnet-group
+        - sg-0910431509fba56a0
+        - sg-0c8c916ce0943aa26
+        - sg-0bc951ad09afb9df3
+      DBSubnetGroupName: !Ref DBSubnetGroup
       MultiAZ: true
       PubliclyAccessible: true
+      StorageType: gp3
