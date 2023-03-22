@@ -1,12 +1,13 @@
 AWSTemplateFormatVersion: 2010-09-09
 
 Resources:
-  PrivateSubnet1:
+  Publicsubnet1:
     Type: AWS::EC2::Subnet
     Properties:
       VpcId: vpc-049fd765256442cd7
       CidrBlock: 192.168.192.0/19
       AvailabilityZone: ap-northeast-2a
+      MapPublicIpOnLaunch: true
  
   PrivateSubnet2:
     Type: AWS::EC2::Subnet
@@ -21,8 +22,15 @@ Resources:
       DBSubnetGroupDescription: subnet group for rds
       DBSubnetGroupName: web-db-subnet-group
       SubnetIds:
-        - !Ref PrivateSubnet1
+        - !Ref Publicsubnet1
         - !Ref PrivateSubnet2
+
+  SubnetRouteTableAssociation:
+    Type: AWS::EC2::SubnetRouteTableAssociation
+    Properties:
+      SubnetId: !Ref Publicsubnet1
+      RouteTableId: rtb-0c73155a78bcd8660
+
 
   DBInstance:
     Type: AWS::RDS::DBInstance
@@ -31,15 +39,13 @@ Resources:
       DBName: webDB
       DBInstanceIdentifier: web-db
       AllocatedStorage: 20
+      AvailabilityZone: ap-northeast-2a
       DBInstanceClass: db.t3.medium
       Engine: mysql
-      MasterUsername: root
+      MasterUsername: admin
       MasterUserPassword: rootpassword1
       VPCSecurityGroups:
-        - sg-0910431509fba56a0
         - sg-0c8c916ce0943aa26
-        - sg-0bc951ad09afb9df3
       DBSubnetGroupName: !Ref DBSubnetGroup
-      MultiAZ: true
       PubliclyAccessible: true
       StorageType: gp3
