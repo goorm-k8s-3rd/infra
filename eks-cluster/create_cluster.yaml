@@ -28,6 +28,11 @@ iam: #AWS IAM
         namespace: kube-system
       wellKnownPolicies: #AWS , SA에 역할을 붙인다
         autoScaler: true
+    - metadata:
+        name: efs-csi-controller-sa
+        namespace: kube-system
+      wellKnownPolicies:
+        efsCSIController: true
 
 # Managed Node Groups, EKS는 관리형이므로 컨트롤플레인을 AWS에서 관리해 준다.
 managedNodeGroups:
@@ -49,6 +54,7 @@ managedNodeGroups:
         cloudWatch: true
         ebs: true 
         imageBuilder: true
+        efs: true
 
 # CloudWatch Logging
 cloudWatch: #컨트롤플레인 로깅

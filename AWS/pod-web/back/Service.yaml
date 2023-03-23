@@ -4,6 +4,7 @@ metadata:
   name: web-service
   labels:
     app: web
+    tier: back
 spec:
   type: NodePort
   selector:

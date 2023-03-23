@@ -4,6 +4,7 @@ metadata:
   name: web-hpa
   labels:
     app: web
+    tier: back
 spec:
   scaleTargetRef:
     apiVersion: apps/v1

@@ -1,0 +1,42 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: book-deploy
+spec:
+  selector:
+    matchLabels:
+      tier: back
+  replicas: 2
+  template:
+    metadata:
+      labels:
+        tier: back
+    spec:
+      containers:
+      - name: book-back
+        image: <Image>
+        resources:
+          requests:
+            memory: "128Mi"
+            cpu: "500m"            
+          limits:
+            memory: "128Mi"
+            cpu: "500m"
+        ports:
+        - containerPort: 80
+        volumeMounts:
+          - mountPath: /book_db
+            name: efs
+            resources:
+              requests:
+                cpu: "250m"
+                memory: "64Mi"
+              limits:
+                cpu: "250m"
+                memory: "64Mi"
+        volumes:
+          - name: efs-volume
+            persistentVolumeClaim:
+              claimName: efs-pvc
+          
+          
