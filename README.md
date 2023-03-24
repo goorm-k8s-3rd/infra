@@ -35,3 +35,10 @@ eks 클러스터에 접속하시려면 이렇게 하시면 됩니다.
 ```bash
 aws eks update-kubeconfig --region ap-northeast-2 --name book-network
 ```
+
+rds 접속
+```bash
+ mysql web-db.crpzp5qoygw6.ap-northeast-2.rds.amazonaws.com -u admin -p
+```
+
+비밀번호는 슬랙에 잇어용
