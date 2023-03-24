@@ -23,10 +23,36 @@ spec:
             memory: "128Mi"
             cpu: "500m"
         ports:
-        - containerPort: 80
+        - containerPort: 8080
+        env:
+          - name: DB_ADDRESS
+            valueFrom:
+              secretKeyRef:
+                name: web-rds-secret
+                key: address
+          - name: DB_PORT
+            valueFrom:
+              secretKeyRef:
+                name: web-rds-secret
+                key: port
+          - name: DB_NAME
+            valueFrom:
+              secretKeyRef:
+                name: web-rds-secret
+                key: name
+          - name: DB_PASSWORD
+            valueFrom:
+              secretKeyRef:
+                name: web-rds-secret
+                key: password
+          - name: DB_DBNAME
+            valueFrom:
+              secretKeyRef:
+                name: web-rds-secret
+                key: dbname
         volumeMounts:
           - mountPath: /book_db
-            name: efs
+            name: efs-volume
             resources:
               requests:
                 cpu: "250m"
