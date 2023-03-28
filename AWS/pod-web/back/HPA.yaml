@@ -6,7 +6,7 @@ spec:
   scaleTargetRef:
     apiVersion: apps/v1
     kind: Deployment
-    name: web-deployment
+    name: book-deploy
   minReplicas: 1
   maxReplicas: 3
   metrics:
