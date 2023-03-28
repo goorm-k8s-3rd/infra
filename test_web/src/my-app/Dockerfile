@@ -2,7 +2,7 @@ FROM node:latest
 
 RUN mkdir /web
 
-WORKDIR /web/src
+WORKDIR /web
 
 COPY package*.json ./
 
@@ -10,6 +10,6 @@ RUN npm install
 
 COPY . .
 
-EXPOSE 80
+EXPOSE 3000
 
-CMD ["node", "app.js"]
+CMD ["npm", "start"]
