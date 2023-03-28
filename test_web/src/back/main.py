@@ -41,6 +41,6 @@ def read_users():
     )
 
     cursor = mydb.cursor()
-    cursor.excute("SELECT * FROM users")
+    cursor.execute("SELECT * FROM users")
     result = cursor.fetchall()
     return result
