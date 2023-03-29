@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: book-back
-        image: 596401894998.dkr.ecr.ap-northeast-2.amazonaws.com/book-network:latest01
+        image: 596401894998.dkr.ecr.ap-northeast-2.amazonaws.com/book-network:latest
         imagePullPolicy: Always
         resources:
           requests:

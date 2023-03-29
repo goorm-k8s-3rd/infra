@@ -18,11 +18,11 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-db_address = os.environ['DB_ADDRESS']
-db_port = os.environ['DB_PORT']
-db_name = os.environ['DB_NAME']
-db_password = os.environ['DB_PASSWORD']
-db_dbname = os.environ['DB_DBNAME']
+db_address = os.getenv('DB_ADDRESS')
+db_port = os.getenv('DB_PORT')
+db_name = os.getenv('DB_NAME')
+db_password = os.getenv('DB_PASSWORD')
+db_dbname = os.getenv('DB_DBNAME')
 
 
 @app.get("/")
@@ -37,7 +37,8 @@ def read_users():
         port=db_port,
         user=db_name,
         password=db_password,
-        database=db_dbname
+        database=db_dbname,
+        charset='utf8'
     )
 
     cursor = mydb.cursor()
