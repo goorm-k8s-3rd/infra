@@ -13,50 +13,68 @@ spec:
         tier: back
     spec:
       containers:
-      - name: book-back
-        image: 596401894998.dkr.ecr.ap-northeast-2.amazonaws.com/book-network:latest
-        imagePullPolicy: Always
-        resources:
-          requests:
-            memory: "128Mi"
-            cpu: "500m"            
-          limits:
-            memory: "128Mi"
-            cpu: "500m"
-        volumeMounts:
-          - mountPath: /book_db
-            name: efs-volume
-        ports:
-        - containerPort: 8080
-        env:
-          - name: DB_ADDRESS
-            valueFrom:
-              secretKeyRef:
-                name: web-rds-secret
-                key: address
-          - name: DB_PORT
-            valueFrom:
-              secretKeyRef:
-                name: web-rds-secret
-                key: port
-          - name: DB_NAME
-            valueFrom:
-              secretKeyRef:
-                name: web-rds-secret
-                key: name
-          - name: DB_PASSWORD
-            valueFrom:
-              secretKeyRef:
-                name: web-rds-secret
-                key: password
-          - name: DB_DBNAME
-            valueFrom:
-              secretKeyRef:
-                name: web-rds-secret
-                key: dbname
+        - name: book-back
+          image: 596401894998.dkr.ecr.ap-northeast-2.amazonaws.com/book-network:back
+          imagePullPolicy: Always
+          resources:
+            requests:
+              memory: "128Mi"
+              cpu: "500m"
+            limits:
+              memory: "128Mi"
+              cpu: "500m"
+          volumeMounts:
+            - mountPath: /book_db
+              name: efs-volume
+          ports:
+            - containerPort: 8080
+          env:
+            - name: DB_ADDRESS
+              valueFrom:
+                secretKeyRef:
+                  name: web-rds-secret
+                  key: address
+            - name: DB_PORT
+              valueFrom:
+                secretKeyRef:
+                  name: web-rds-secret
+                  key: port
+            - name: DB_NAME
+              valueFrom:
+                secretKeyRef:
+                  name: web-rds-secret
+                  key: name
+            - name: DB_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: web-rds-secret
+                  key: password
+            - name: DB_DBNAME
+              valueFrom:
+                secretKeyRef:
+                  name: web-rds-secret
+                  key: dbname
+            - name: KEY
+              valueFrom:
+                secretKeyRef:
+                  name: web-rds-secret
+                  key: key
+            - name: AUTH_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: web-rds-secret
+                  key: authkey
+            - name: AUTH_ALGORITHM
+              valueFrom:
+                secretKeyRef:
+                  name: web-rds-secret
+                  key: authalgorithm
+            - name: AUTH_EXP
+              valueFrom:
+                secretKeyRef:
+                  name: web-rds-secret
+                  key: authexp
       volumes:
         - name: efs-volume
           persistentVolumeClaim:
             claimName: efs-pvc
-          
-          
