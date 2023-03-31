@@ -29,11 +29,11 @@ spec:
         ports:
         - containerPort: 8080
         env:
-          - name: DB_ADDRESS
+          - name: DB_HOST
             valueFrom:
               secretKeyRef:
                 name: web-rds-secret
-                key: address
+                key: host
           - name: DB_PORT
             valueFrom:
               secretKeyRef:
