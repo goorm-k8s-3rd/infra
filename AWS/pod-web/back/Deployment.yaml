@@ -29,11 +29,11 @@ spec:
         ports:
         - containerPort: 8080
         env:
-          - name: DB_HOST
+          - name: DB_ADDRESS
             valueFrom:
               secretKeyRef:
                 name: web-rds-secret
-                key: host
+                key: address
           - name: DB_PORT
             valueFrom:
               secretKeyRef:
@@ -58,5 +58,3 @@ spec:
         - name: efs-volume
           persistentVolumeClaim:
             claimName: efs-pvc
-          
-          
