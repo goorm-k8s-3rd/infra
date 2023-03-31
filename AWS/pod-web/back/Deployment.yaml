@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: book-back
-        image: 596401894998.dkr.ecr.ap-northeast-2.amazonaws.com/book-network:latest
+        image: 596401894998.dkr.ecr.ap-northeast-2.amazonaws.com/book-network:back
         imagePullPolicy: Always
         resources:
           requests:
@@ -29,11 +29,11 @@ spec:
         ports:
         - containerPort: 8080
         env:
-          - name: DB_ADDRESS
+          - name: DB_HOST
             valueFrom:
               secretKeyRef:
                 name: web-rds-secret
-                key: address
+                key: host
           - name: DB_PORT
             valueFrom:
               secretKeyRef:
