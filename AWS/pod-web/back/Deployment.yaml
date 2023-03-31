@@ -29,11 +29,11 @@ spec:
         ports:
         - containerPort: 8080
         env:
-          - name: DB_HOST
+          - name: DB_ADDRESS
             valueFrom:
               secretKeyRef:
                 name: web-rds-secret
-                key: host
+                key: address
           - name: DB_PORT
             valueFrom:
               secretKeyRef:
@@ -54,6 +54,26 @@ spec:
               secretKeyRef:
                 name: web-rds-secret
                 key: dbname
+          - name: KEY
+            valueFrom:
+              secretKeyRef:
+                name: web-rds-secret
+                key: key
+          - name: AUTH_KEY
+            valueFrom:
+              secretKeyRef:
+                name: web-rds-secret
+                key: authkey
+          - name: AUTH_ALGORITHM
+            valueFrom:
+              secretKeyRef:
+                name: web-rds-secret
+                key: authalgorithm
+          - name: AUTH_EXP
+            valueFrom:
+              secretKeyRef:
+                name: web-rds-secret
+                key: authexp
       volumes:
         - name: efs-volume
           persistentVolumeClaim:

@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: test-front
-        image: 596401894998.dkr.ecr.ap-northeast-2.amazonaws.com/book-network:frontlatest
+        image: 596401894998.dkr.ecr.ap-northeast-2.amazonaws.com/book-network:front
         resources:
           requests:
             memory: "128Mi"
