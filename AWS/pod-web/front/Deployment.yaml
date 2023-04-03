@@ -13,7 +13,7 @@ spec:
         tier: front
     spec:
       containers:
-      - name: test-front
+      - name: front-service
         image: 596401894998.dkr.ecr.ap-northeast-2.amazonaws.com/book-network:front
         resources:
           requests:
