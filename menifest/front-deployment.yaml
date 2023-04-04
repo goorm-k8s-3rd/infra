@@ -13,14 +13,14 @@ spec:
         tier: front
     spec:
       containers:
-      - name: front-service
-        image: 596401894998.dkr.ecr.ap-northeast-2.amazonaws.com/book-network:front
-        resources:
-          requests:
-            memory: "128Mi"
-            cpu: "500m"
-          limits:
-            memory: "128Mi"
-            cpu: "500m"
-        ports:
-        - containerPort: 8081
+        - name: front-service
+          image: 596401894998.dkr.ecr.ap-northeast-2.amazonaws.com/book-network:front
+          resources:
+            requests:
+              memory: "500Mi"
+              cpu: "500m"
+            limits:
+              memory: "500Mi"
+              cpu: "500m"
+          ports:
+            - containerPort: 8081
