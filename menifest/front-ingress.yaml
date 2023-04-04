@@ -10,7 +10,6 @@ metadata:
     alb.ingress.kubernetes.io/target-type: instance
 spec:
   rules:
-  - host: ""
   - http:
       paths:
       - pathType: Prefix
