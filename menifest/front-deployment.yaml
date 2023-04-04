@@ -12,6 +12,25 @@ spec:
       labels:
         tier: front
     spec:
+      affinity:
+        podAntiAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+          - labelSelector:
+              matchExpressions:
+              - key: tier
+                operator: In
+                values:
+                - front
+            topologyKey: "kubernetes.io/hostname"
+        podAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+          - labelSelector:
+              matchExpressions:
+              - key: tier
+                operator: In
+                values:
+                - back 
+            topologyKey: "kubernetes.io/hostname"      
       containers:
         - name: front-service
           image: 596401894998.dkr.ecr.ap-northeast-2.amazonaws.com/book-network:front

@@ -28,6 +28,16 @@ spec:
             name: efs-volume
         ports:
         - containerPort: 8080
+        affinity:
+          podAntiAffinity:
+            requiredDuringSchedulingIgnoredDuringExecution:
+            - labelSelector:
+              matchExpressions:
+              - key: tier
+                operator: In
+                values:
+                - back
+            topologyKey: "kubernetes.io/hostname"
         env:
           - name: DB_ADDRESS
             valueFrom:
