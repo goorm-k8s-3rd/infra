@@ -9,6 +9,11 @@ metadata:
     alb.ingress.kubernetes.io/scheme: internet-facing
     alb.ingress.kubernetes.io/target-type: instance
 spec:
+  defaultBackend:
+    service:
+      name: front-service
+      port:
+        number: 80
   rules:
   - http:
       paths:
@@ -18,4 +23,4 @@ spec:
           service:
             name: front-service
             port: 
-              number: 8080
+              number: 80
