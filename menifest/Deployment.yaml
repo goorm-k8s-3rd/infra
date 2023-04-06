@@ -12,16 +12,6 @@ spec:
       labels:
         tier: back
     spec:
-      affinity:
-        podAntiAffinity:
-          requiredDuringSchedulingIgnoredDuringExecution:
-          - labelSelector:
-              matchExpressions:
-              - key: tier
-                operator: In
-                values:
-                - back
-            topologyKey: "kubernetes.io/hostname"
       containers:
       - name: book-back
         image: 596401894998.dkr.ecr.ap-northeast-2.amazonaws.com/book-network:back
