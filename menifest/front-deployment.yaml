@@ -35,6 +35,7 @@ spec:
       containers:
         - name: front-service
           image: 596401894998.dkr.ecr.ap-northeast-2.amazonaws.com/book-network:front
+          imagePullPolicy: Always
           resources:
             requests:
               memory: "2Gi"
