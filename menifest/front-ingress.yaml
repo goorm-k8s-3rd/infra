@@ -17,7 +17,7 @@ spec:
     service:
       name: front-service
       port:
-        number: 3000
+        number: 80
   rules:
   - host: "book-network.net"
     http:
@@ -28,4 +28,4 @@ spec:
           service:
             name: front-service
             port: 
-              number: 3000
+              number: 80
