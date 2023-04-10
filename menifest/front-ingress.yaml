@@ -15,7 +15,8 @@ spec:
       port:
         number: 3000
   rules:
-  - http:
+  - host: "book-network.net"
+    http:
       paths:
       - pathType: Prefix
         path: /
