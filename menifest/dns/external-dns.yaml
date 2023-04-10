@@ -23,8 +23,8 @@ roleRef:
   name: external-dns
 subjects:
 - kind: ServiceAccount
-  name: external-dns
-  namespace: default
+  name: ex-dns
+  namespace: ex-dns
 ---
 apiVersion: apps/v1
 kind: Deployment
