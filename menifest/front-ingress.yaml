@@ -12,11 +12,6 @@ metadata:
     alb.ingress.kubernetes.io/tls-redirect: '443'
     alb.ingress.kubernetes.io/certificate-arn: arn:aws:acm:ap-northeast-2:596401894998:certificate/fab02d6b-d04f-494e-aa26-6c4c76386893
 spec:
-  defaultBackend:
-    service:
-      name: front-service
-      port:
-        number: 80
   rules:
   - host: "book-network.net"
     http:
